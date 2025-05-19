@@ -10,7 +10,7 @@ public class iTest {
 
     // List of four test files with different dataset sizes
     private static final String files[] = {
-        "tiny.txt", "small.txt", "medium.txt", "large.txt"
+            "tiny.txt", "small.txt", "medium.txt", "large.txt"
     };
 
     /**
@@ -56,12 +56,44 @@ public class iTest {
             int[] arr = readArrayFromFile("data/" + file);
 
             // Test methods that do not require ordered inputs on the test data
+            Arrays.sort(arr); // Sorted array required for most tasks
+            System.out.println("Task 1 - countUnique: " + sa.countUnique(arr));
 
-            Arrays.sort(arr);
+            // Task 2: leastFrequent
+            System.out.println("Task 2 - leastFrequent: " + sa.leastFrequent(arr));
 
-            // Test methods that require ordered inputs on the test data
+            // Task 3: countLess
+            int testNum = 10; // change as needed for testing
+            System.out.println("Task 3 - countLess (" + testNum + "): " + sa.countLess(arr, testNum));
 
-            System.out.println(); // Print a blank line for readability
+            // Task 4: countBetween
+            int low = 5, high = 20; // change as needed
+            System.out.println("Task 4 - countBetween (" + low + " to " + high + "): " + sa.countBetween(arr, low, high));
+
+            // Task 5: topKFrequent
+            int k = 3; // top-k most frequent
+            int[] topK = sa.topKFrequent(arr, k);
+            System.out.print("Task 5 - topKFrequent (" + k + "): ");
+            for (int val : topK) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+
+            // Task 6: longestAscSubarray (original array, not sorted)
+            int[] arrOriginal = readArrayFromFile("data/" + file); // get unsorted version again
+            int[] longestAsc = sa.longestAscSubarray(arrOriginal);
+            System.out.print("Task 6 - longestAscSubarray: ");
+            for (int val : longestAsc) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+
+            // Task 7: maxSubarraySum (exactly k elements)
+            int windowSize = 5;
+            int maxSum = sa.maxSubarraySum(arrOriginal, windowSize);
+            System.out.println("Task 7 - maxSubarraySum (k=" + windowSize + "): " + maxSum);
+
+            System.out.println();
         }
     }
 }
